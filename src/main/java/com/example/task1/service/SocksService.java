@@ -1,8 +1,9 @@
 package com.example.task1.service;
 
-import com.example.task1.model.Socks;
+import com.example.task1.dto.SocksDto;
+import com.example.task1.model.SocksModel;
 import org.springframework.stereotype.Service;
 
 public interface SocksService {
-    public String incomeSocks(Socks socks);
+    public SocksDto incomeSocks(SocksDto socks);
 }

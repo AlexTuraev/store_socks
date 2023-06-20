@@ -1,9 +1,10 @@
 -- liquibase formatted sql
 
 -- changeset alex:1
-CREATE TABLE "socks" (
-    "id" BIGINT primary key,
+CREATE TABLE "socks_model" (
+    --"id" BIGINT auto_increment primary key,
+    "id" SERIAL,
     "color" VARCHAR,
-    "cottonPart" SMALLINT,
+    "cotton_part" SMALLINT,
     "quantity" INTEGER
 );
