@@ -5,5 +5,7 @@ import com.example.task1.model.SocksModel;
 import org.springframework.stereotype.Service;
 
 public interface SocksService {
-    public SocksDto incomeSocks(SocksDto socks);
+    SocksDto incomeSocks(SocksDto socks);
+
+    SocksDto outcomeSocks(SocksDto socksDto);
 }

@@ -25,6 +25,11 @@ public class SocksController {
         return ResponseEntity.ok(socksService.incomeSocks(socksDto));
     }
 
+    @PostMapping(value="/outcome", consumes="application/json")
+    public ResponseEntity<?> outcomeSocks(@RequestBody SocksDto socksDto) {
+        return ResponseEntity.ok(socksService.outcomeSocks(socksDto));
+    }
+
    /* @GetMapping("/get")
     public String getSocks() {
         return "Hello from Socks Store";

@@ -17,9 +17,32 @@ public class SocksServiceImpl implements SocksService {
         this.socksMapper = socksMapper;
     }
 
+    @Override
     public SocksDto incomeSocks(SocksDto socksDto) {
         SocksModel socksModel = socksMapper.socksDtoToSocksModel(socksDto);
-        socksRepository.save(socksModel);
-        return socksMapper.socksModelToSocksDto(socksModel);
+        SocksModel socksModelPrev = socksRepository.findByColorAndCottonPart(socksModel.getColor(), socksModel.getCottonPart()).orElse(null);
+
+        if (socksModelPrev != null) {
+            socksModel.addQuantity(socksModelPrev.getQuantity());
+            socksModel.setId(socksModelPrev.getId());
+        }
+
+        return socksMapper.socksModelToSocksDto(
+                socksRepository.save(socksModel)
+        );
+    }
+
+    @Override
+    public SocksDto outcomeSocks(SocksDto socksDto) {
+        SocksModel socksModel = socksMapper.socksDtoToSocksModel(socksDto);
+        SocksModel socksModelPrev = socksRepository.findByColorAndCottonPart(socksModel.getColor(), socksModel.getCottonPart()).orElse(null);
+
+        if (socksModelPrev != null) {
+            socksModelPrev.decQuantity(socksModel.getQuantity());
+            socksRepository.save(socksModelPrev);
+            return socksMapper.socksModelToSocksDto(socksModelPrev);
+        } else {
+            return null;
+        }
     }
 }

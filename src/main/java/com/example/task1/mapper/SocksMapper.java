@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class SocksMapper {
     public SocksModel socksDtoToSocksModel(SocksDto socksDto) {
         SocksModel socksModel = new SocksModel();
-        socksModel.setColor(socksDto.getColor());
+        socksModel.setColor(socksDto.getColor().toUpperCase());
         socksModel.setCottonPart(socksDto.getCottonPart());
         socksModel.setQuantity(socksDto.getQuantity());
         return socksModel;
@@ -19,6 +19,7 @@ public class SocksMapper {
         socksDto.setColor(socksModel.getColor());
         socksDto.setCottonPart(socksModel.getCottonPart());
         socksDto.setQuantity(socksModel.getQuantity());
+        socksDto.setId(socksModel.getId());
         return socksDto;
     }
 }

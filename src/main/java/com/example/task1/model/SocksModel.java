@@ -19,4 +19,12 @@ public class SocksModel {
     @Column(name="cotton_part")
     private int cottonPart; // процент содержания хлопка
     private int quantity; // количество пар носков, целое число > 0
+
+    public void addQuantity(int q) {
+        this.quantity += q;
+    }
+
+    public void decQuantity(int q) {
+        this.quantity -= q;
+    }
 }
