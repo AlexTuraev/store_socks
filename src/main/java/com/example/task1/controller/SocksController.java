@@ -1,9 +1,14 @@
 package com.example.task1.controller;
 
 import com.example.task1.dto.SocksDto;
+import com.example.task1.exceptions.InvalidDtoDataException;
 import com.example.task1.model.SocksModel;
 import com.example.task1.service.SocksService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.GeneratedValue;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
