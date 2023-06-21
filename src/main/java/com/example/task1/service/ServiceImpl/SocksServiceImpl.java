@@ -42,13 +42,19 @@ public class SocksServiceImpl implements SocksService {
         SocksModel socksModel = socksMapper.socksDtoToSocksModel(socksDto);
         SocksModel socksModelPrev = socksRepository.findByColorAndCottonPart(socksModel.getColor(), socksModel.getCottonPart()).orElse(null);
 
-        if (socksModelPrev != null) {
-            socksModelPrev.decQuantity(socksModel.getQuantity());
-            socksRepository.save(socksModelPrev);
-            return socksMapper.socksModelToSocksDto(socksModelPrev);
-        } else {
+        if (socksModelPrev == null) {
             return null;
         }
+
+        socksModelPrev.decQuantity(socksModel.getQuantity());
+        if (socksModelPrev.getQuantity() == 0) {
+            socksRepository.deleteById(socksModelPrev.getId());
+        } else {
+            socksRepository.save(socksModelPrev);
+        }
+
+        return socksMapper.socksModelToSocksDto(socksModelPrev);
+
     }
 
     @Override
@@ -70,8 +76,9 @@ public class SocksServiceImpl implements SocksService {
             case EQUAL:
                 resQuantitySocks = socksRepository.findByColorWithCottonPartEqual(colorValue, cottonPart);
                 break;
-            default: throw new InvalidInputDataException("Неверно передана команда по выборке из базы. Допустимые значения: " +
-                    "MORETHAN, LESSTHAN, EQUAL. Регистр не имеет значения");
+            default:
+                throw new InvalidInputDataException("Неверно передана команда по выборке из базы. Допустимые значения: " +
+                        "MORETHAN, LESSTHAN, EQUAL. Регистр не имеет значения");
         }
         return resQuantitySocks;
     }
