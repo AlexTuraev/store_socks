@@ -25,6 +25,10 @@ public class SocksController {
         return ResponseEntity.ok(socksService.incomeSocks(socksDto));
     }
 
+
+    /*
+        Регистрирует отпуск носков со склада
+    */
     @PostMapping(value="/outcome", consumes="application/json")
     public ResponseEntity<?> outcomeSocks(@RequestBody SocksDto socksDto) {
 
