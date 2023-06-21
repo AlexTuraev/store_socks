@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class SocksDto {
     private long id; // id
-    private String color; // цвет носков
-    private int cottonPart; // процент содержания хлопка
-    private int quantity; // количество пар носков, целое число > 0
+    // Ставим неверные данные для формирования исключения, в случае отсутствия данных
+    private String color = ""; // цвет носков
+    private int cottonPart = -1; // процент содержания хлопка
+    private int quantity = -1; // количество пар носков, целое число > 0
 }

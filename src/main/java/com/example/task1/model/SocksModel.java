@@ -1,5 +1,6 @@
 package com.example.task1.model;
 
+import com.example.task1.exceptions.SocksQuantityOutOfRangeException;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -25,6 +26,9 @@ public class SocksModel {
     }
 
     public void decQuantity(int q) {
+        if (this.quantity - q < 0) {
+            throw new SocksQuantityOutOfRangeException("Нет такого количества носков для списания");
+        }
         this.quantity -= q;
     }
 }

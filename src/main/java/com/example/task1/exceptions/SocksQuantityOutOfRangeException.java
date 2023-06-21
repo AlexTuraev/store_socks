@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class InvalidDtoDataException extends IllegalArgumentException{
-    public InvalidDtoDataException(String s) {
-        super(s);
+public class SocksQuantityOutOfRangeException extends RuntimeException{
+    public SocksQuantityOutOfRangeException(String message) {
+        super(message);
     }
 }
