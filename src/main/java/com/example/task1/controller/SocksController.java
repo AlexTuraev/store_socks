@@ -43,7 +43,7 @@ public class SocksController {
                     ),
                     @ApiResponse(
                             responseCode = "500",
-                            description = "An error occurred that does not depend on the caller (for example, the database is unavailable)",
+                            description = "An error occurred that does not depend on the caller (for example, the DataBase is unavailable)",
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                                     schema = @Schema(implementation = SocksDto.class)
@@ -78,7 +78,7 @@ public class SocksController {
                     ),
                     @ApiResponse(
                             responseCode = "500",
-                            description = "An error occurred that does not depend on the caller (for example, the database is unavailable)",
+                            description = "An error occurred that does not depend on the caller (for example, the DataBase is unavailable)",
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                                     schema = @Schema(implementation = SocksDto.class)
@@ -112,7 +112,7 @@ public class SocksController {
                     ),
                     @ApiResponse(
                             responseCode = "500",
-                            description = "An error occurred that does not depend on the caller (for example, the database is unavailable)",
+                            description = "An error occurred that does not depend on the caller (for example, the DataBase is unavailable)",
                             content = @Content()
                     )
             }
