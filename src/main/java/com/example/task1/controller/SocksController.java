@@ -91,7 +91,7 @@ public class SocksController {
 
         SocksDto socksDtoRes = socksService.outcomeSocks(socksDto);
         if (socksDtoRes == null) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.badRequest().build();
         } else {
             return ResponseEntity.ok(socksDtoRes);
         }
