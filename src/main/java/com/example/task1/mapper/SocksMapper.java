@@ -7,6 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SocksMapper {
+    /**
+     * Transform SocksDto to SocksModel
+     * @param socksDto {@link SocksDto}
+     * @return {@link SocksModel}
+     */
     public SocksModel socksDtoToSocksModel(SocksDto socksDto) {
         if (!isValidData(socksDto)) {
             throw new InvalidInputDataException("Внимание! cottonPart >=0 && cottonPart <=100 && quantity > 0");
@@ -18,6 +23,11 @@ public class SocksMapper {
         return socksModel;
     }
 
+    /**
+     * Transform SocksModel to SocksDto
+     * @param socksModel {@link SocksModel}
+     * @return socksDto {@link SocksDto}
+     */
     public SocksDto socksModelToSocksDto(SocksModel socksModel) {
         SocksDto socksDto = new SocksDto();
         socksDto.setColor(socksModel.getColor());
@@ -27,6 +37,11 @@ public class SocksMapper {
         return socksDto;
     }
 
+    /**
+     * Validation data
+     * @param socksDto {@link SocksDto}
+     * @return true when input data is valid, otherwise - false
+     */
     private boolean isValidData(SocksDto socksDto) {
         if (socksDto.getQuantity() <= 0 || socksDto.getCottonPart() < 0 || socksDto.getCottonPart() > 100
         || socksDto.getColor().isEmpty()) {

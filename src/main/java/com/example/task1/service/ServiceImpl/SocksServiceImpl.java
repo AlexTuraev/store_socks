@@ -22,6 +22,16 @@ public class SocksServiceImpl implements SocksService {
         this.socksMapper = socksMapper;
     }
 
+    /**
+     * It adds new quantity of socks to Data Base Table (socksDto.quantity) to previous quantity.<br>
+     * If this type of socks doesn't exist it creates new record in DB Table<br>
+     * It use {@link SocksMapper#socksDtoToSocksModel(SocksDto)}<br>
+     * It use {@link SocksMapper#socksModelToSocksDto(SocksModel)}<br>
+     * It use {@link SocksRepository#findByColorAndCottonPart}<br>
+     * It use {@link SocksRepository#save(Object)}<br>
+     * @param socksDto {@link SocksDto}
+     * @return new socksDto {@link SocksDto}
+     */
     @Override
     public SocksDto incomeSocks(SocksDto socksDto) {
         SocksModel socksModel = socksMapper.socksDtoToSocksModel(socksDto);
@@ -37,6 +47,16 @@ public class SocksServiceImpl implements SocksService {
         );
     }
 
+    /**
+     * It reduces previous quantity of sockы in Data Base Table by an amount socksDto.quantity.<br>
+     * If result of reducing is 0 socks it remove this type of socks from DB Table<br>
+     * It use {@link SocksMapper#socksDtoToSocksModel(SocksDto)}<br>
+     * It use {@link SocksMapper#socksModelToSocksDto(SocksModel)}<br>
+     * It use {@link SocksRepository#findByColorAndCottonPart}<br>
+     * It use {@link SocksRepository#save(Object)}<br>
+     * @param socksDto {@link SocksDto}
+     * @return new socksDto {@link SocksDto}
+     */
     @Override
     public SocksDto outcomeSocks(SocksDto socksDto) {
         SocksModel socksModel = socksMapper.socksDtoToSocksModel(socksDto);
@@ -57,6 +77,13 @@ public class SocksServiceImpl implements SocksService {
 
     }
 
+    /**
+     *
+     * @param color
+     * @param operation - condition >, < or == (must be "MORETHAN", "LESSTHAN", "EQUAL" in any case of characters)
+     * @param cottonPart (must be in integer range [0 - 100])
+     * @return Optional<Integer> - total amount of socks for type:color AND cottonPart
+     */
     @Override
     public Optional<Integer> getSocks(String color, String operation, int cottonPart) {
         if (!isValidData(color, operation, cottonPart)) {
@@ -83,6 +110,14 @@ public class SocksServiceImpl implements SocksService {
         return resQuantitySocks;
     }
 
+    /**
+     * It checks validation of input data<br>
+     * All parameters must be not empty
+     * @param color
+     * @param operation (must be "MORETHAN", "LESSTHAN", "EQUAL" in any case of characters)
+     * @param cottonPart (must be in integer range [0 - 100])
+     * @return true - input data is valid, otherwise - false
+     */
     private boolean isValidData(String color, String operation, int cottonPart) {
         if (color.isEmpty() || operation.isEmpty() || cottonPart < 0 || cottonPart > 100) {
             return false;
